@@ -1,19 +1,16 @@
 package com.scalebit.timebadger.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import com.scalebit.timebadger.R;
 import com.scalebit.timebadger.logic.DateUtil;
 import com.scalebit.timebadger.model.WorkDay;
 import com.scalebit.timebadger.model.WorkMonth;
-import com.scalebit.timebadger.R;
 
 public class WorkMonthArrayAdapter extends ArrayAdapter<WorkDay> {
 
@@ -46,7 +43,7 @@ public class WorkMonthArrayAdapter extends ArrayAdapter<WorkDay> {
 
         TextView totalTimeTextView = (TextView) rowView.findViewById(R.id.totalTime);
         totalTimeTextView.setText(String.format("%s/%s",
-                DateUtil.minutesToDecimalHours(workDay.getTotalTime()),
+                DateUtil.minutesToHourMinuteString(workDay.getTotalTime()),
                 DateUtil.minutesToDecimalHours(workDay.getTotalTime())
         ));
 
