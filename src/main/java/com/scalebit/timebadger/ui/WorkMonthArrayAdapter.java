@@ -9,8 +9,12 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.scalebit.timebadger.R;
 import com.scalebit.timebadger.logic.DateUtil;
+import com.scalebit.timebadger.model.SimpleDate;
 import com.scalebit.timebadger.model.WorkDay;
 import com.scalebit.timebadger.model.WorkMonth;
+
+import java.util.Calendar;
+import java.util.Locale;
 
 public class WorkMonthArrayAdapter extends ArrayAdapter<WorkDay> {
 
@@ -39,7 +43,10 @@ public class WorkMonthArrayAdapter extends ArrayAdapter<WorkDay> {
         }
 
         TextView dateTextView = (TextView) rowView.findViewById(R.id.date);
-        dateTextView.setText(workDay.getDate().toFormattedString());
+        SimpleDate date = workDay.getDate();
+        Calendar cal = DateUtil.dateToCalendar(date);
+        dateTextView.setText(workDay.getDate().toFormattedString() +
+                             " " + cal.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.SHORT, Locale.US));
 
         TextView totalTimeTextView = (TextView) rowView.findViewById(R.id.totalTime);
         totalTimeTextView.setText(String.format("%s/%s",

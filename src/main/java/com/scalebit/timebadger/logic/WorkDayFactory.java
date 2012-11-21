@@ -3,6 +3,7 @@ package com.scalebit.timebadger.logic;
 import com.scalebit.timebadger.model.Month;
 import com.scalebit.timebadger.model.SimpleDate;
 import com.scalebit.timebadger.model.WorkDay;
+import com.scalebit.timebadger.model.WorkItem;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,7 +17,9 @@ public class WorkDayFactory {
         List<WorkDay> workDays = new ArrayList<WorkDay>(daysOfMonth);
 
         for (int i=0;i<daysOfMonth;i++) {
-            workDays.add(new WorkDay(new SimpleDate(month, i + 1)));
+            WorkDay workDay = new WorkDay(new SimpleDate(month, i + 1));
+            workDay.addWorkItem(new WorkItem(workDay.getDate()));
+            workDays.add(workDay);
         }
 
         return workDays;
